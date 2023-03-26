@@ -5,10 +5,13 @@ import { SignInButton, SignIn, useUser, SignOutButton } from "@clerk/nextjs";
 
 
 import { api } from "~/utils/api";
-
 const Home: NextPage = () => {
 
   const user = useUser();
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const {data} = api.posts.getAll.useQuery();
+
   return (
     <>
       <Head>
@@ -22,6 +25,9 @@ const Home: NextPage = () => {
         <div>
           {!user.isSignedIn && <SignInButton />}
           {!!user.isSignedIn && <SignOutButton />}
+        </div>
+        <div>
+          {data?.map((post) => <div key={post.id}>{post.content}</div>)}
         </div>
       </div>
       </main>

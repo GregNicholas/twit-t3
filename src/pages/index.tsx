@@ -11,7 +11,7 @@ const Home: NextPage = () => {
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const {data} = api.posts.getAll.useQuery();
-
+console.log("DATA: ", data)
   return (
     <>
       <Head>
